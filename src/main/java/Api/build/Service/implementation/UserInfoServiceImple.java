@@ -46,16 +46,27 @@ public class UserInfoServiceImple implements UserInfoService {
 
     @Override
     public String getUSer(User user) {
-       Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUserName(), user.getPassword()));
-       System.out.println(" hello ...Auth object"+authentication.isAuthenticated());
-       if(authentication.isAuthenticated())
-       {
-        return jwtUtilService.generateToken(user.getUserName());
 
-       }
-        else{
-            throw new InvalidCredentialException("Invalid Credentials");
+    try {
+            Authentication authentication = authManager.authenticate
+            (
+            new UsernamePasswordAuthenticationToken(
+                    user.getUserName(),
+                    user.getPassword())
+            );
+
+            System.out.println(" hello ...Auth object " + authentication.isAuthenticated());
+
+            if (authentication.isAuthenticated()) 
+            {
+                return jwtUtilService.generateToken(user.getUserName());
+            }
+
+        } catch (Exception e) {
+            throw new InvalidCredentialException("Invalid Credentials ❌");
         }
+
+        return "Authentication Failed ❌";
     }
     
 }

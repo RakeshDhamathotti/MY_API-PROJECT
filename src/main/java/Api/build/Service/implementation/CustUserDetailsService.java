@@ -20,7 +20,7 @@ public class CustUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        User user = userrep.findByUserName(username).orElseThrow();
+        User user = userrep.findByUserName(username).orElseThrow(()->new RuntimeException("this is triggering"));
         return new org.springframework.security.core.userdetails.User(
                 user.getUserName(),
                 user.getPassword(),

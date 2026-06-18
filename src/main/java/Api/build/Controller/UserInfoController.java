@@ -37,7 +37,12 @@ public class UserInfoController {
         return new ResponseEntity<>("User"+user1.getUserName()+"is Created",HttpStatus.CREATED);
     }
 
-    @PostMapping(value="/login" , consumes = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+
+
+
+
+    
+    @PostMapping(value="/login" , consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity<String>getUser( User user)
     {
         return new ResponseEntity<>(userService.getUSer(user),HttpStatus.OK);
