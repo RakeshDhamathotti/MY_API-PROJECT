@@ -57,6 +57,9 @@ public class UserInfoServiceImple implements UserInfoService {
                     user.getUserName(),
                     user.getPassword())
             );
+            
+            System.out.println("INPUT PASSWORD: " + user.getPassword());
+            System.out.println("DB PASSWORD: " + dbUser.getPassword());
 
             System.out.println(" hello ...Auth object " + authentication.isAuthenticated());
 
