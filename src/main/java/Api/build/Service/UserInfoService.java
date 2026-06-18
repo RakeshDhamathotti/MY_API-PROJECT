@@ -1,5 +1,7 @@
 package Api.build.Service;
 
+import java.util.List;
+
 import Api.build.Entity.User;
 
 public interface UserInfoService {
