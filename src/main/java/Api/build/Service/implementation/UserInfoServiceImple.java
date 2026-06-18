@@ -50,29 +50,37 @@ public class UserInfoServiceImple implements UserInfoService {
     @Override
     public String getUSer(User user) {
 
-    try {
-            Authentication authentication = authManager.authenticate
-            (
-            new UsernamePasswordAuthenticationToken(
-                    user.getUserName(),
-                    user.getPassword())
-            );
-            
-            System.out.println("INPUT PASSWORD: " + user.getPassword());
-            System.out.println("DB PASSWORD: " + dbUser.getPassword());
+    
+try {
+        // ✅ FETCH USER FROM DB FIRST
+        User dbUser = userrep.findByUserName(user.getUserName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
-            System.out.println(" hello ...Auth object " + authentication.isAuthenticated());
+        // ✅ DEBUG PRINTS
+        System.out.println("INPUT PASSWORD: " + user.getPassword());
+        System.out.println("DB PASSWORD: " + dbUser.getPassword());
 
-            if (authentication.isAuthenticated()) 
-            {
-                return jwtUtilService.generateToken(user.getUserName());
-            }
+        System.out.println("MATCH RESULT: " +
+                passwordEncoder.matches(user.getPassword(), dbUser.getPassword()));
 
-        } catch (Exception e) {
-            throw new InvalidCredentialException("Invalid Credentials ❌");
+        // ✅ AUTHENTICATION
+        Authentication authentication = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        user.getUserName(),
+                        user.getPassword()
+                )
+        );
+
+        if (authentication.isAuthenticated()) {
+            return jwtUtilService.generateToken(user.getUserName());
         }
 
-        return "Authentication Failed ❌";
+    } catch (Exception e) {
+        throw new InvalidCredentialException("Invalid Credentials ");
+    }
+
+    return "Authentication Failed ";
+
     }
 
 
