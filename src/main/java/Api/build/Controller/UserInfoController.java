@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Api.build.Entity.User;
 import Api.build.Service.implementation.UserInfoServiceImple;
+import org.springframework.http.MediaType;
 
 
 
@@ -36,7 +37,7 @@ public class UserInfoController {
         return new ResponseEntity<>("User"+user1.getUserName()+"is Created",HttpStatus.CREATED);
     }
 
-    @PostMapping("/login")
+    @PostMapping(value="/login" , consumes = {MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity<String>getUser(@RequestBody User user)
     {
         return new ResponseEntity<>(userService.getUSer(user),HttpStatus.OK);
