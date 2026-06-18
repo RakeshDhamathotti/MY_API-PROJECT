@@ -42,7 +42,7 @@ public class UserInfoController {
 
 
     
-    @PostMapping(value="/login" , consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    @PostMapping(value="/login" )
     public ResponseEntity<String>getUser( User user)
     {
         return new ResponseEntity<>(userService.getUSer(user),HttpStatus.OK);
