@@ -1,7 +1,4 @@
-
 package Api.build.Service.implementation;
-
-import java.util.List;
 
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,9 +7,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import Api.build.Repository.UserRepository;
 import Api.build.Entity.User;
 import Api.build.ExceptionHandling.InvalidCredentialException;
-import Api.build.Repository.UserRepository;
 import Api.build.Service.UserInfoService;
 
 
@@ -76,7 +73,7 @@ public class UserInfoServiceImple implements UserInfoService {
 
     @Override
     public Api.build.Service.List<User> getAllUsers() {
-        // TODO Auto-generated method stub
+        
         return userrep.findAll();
     }
     
