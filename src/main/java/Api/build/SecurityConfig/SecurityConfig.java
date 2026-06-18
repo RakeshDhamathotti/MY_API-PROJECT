@@ -48,18 +48,12 @@ public class SecurityConfig {
         return httpSecurity.build();
     }
 
-    
     @Bean
     public AuthenticationProvider authenticationProvider() {
-
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-
-        provider.setUserDetailsService(userDetails); 
-        provider.setPasswordEncoder(passwordEncoder()); 
-
-        return provider;
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetails);
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+        return daoAuthenticationProvider;
     }
-
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
