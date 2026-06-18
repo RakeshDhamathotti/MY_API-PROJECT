@@ -1,6 +1,8 @@
 
 package Api.build.Service.implementation;
 
+import java.util.List;
+
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -40,6 +42,8 @@ public class UserInfoServiceImple implements UserInfoService {
         
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
+        System.out.println("");
+
         return userrep.save(user);
        
     }
@@ -68,5 +72,13 @@ public class UserInfoServiceImple implements UserInfoService {
 
         return "Authentication Failed ❌";
     }
+
+
+    @Override
+    public Api.build.Service.List<User> getAllUsers() {
+        // TODO Auto-generated method stub
+        return userrep.findAll();
+    }
+    
     
 }

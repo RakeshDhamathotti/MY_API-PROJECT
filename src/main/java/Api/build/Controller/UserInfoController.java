@@ -1,6 +1,8 @@
 
 package Api.build.Controller;
 
+import java.util.List;
+
 // import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +48,12 @@ public class UserInfoController {
     public ResponseEntity<String>getUser( User user)
     {
         return new ResponseEntity<>(userService.getUSer(user),HttpStatus.OK);
+    }
+
+
+    @GetMapping("/allUsers")
+    public List<User> alluser()
+    {
+        return userService.getAllUsers();
     }
 }
