@@ -46,17 +46,21 @@ public class ServiceImplementation implements EmployeeApiService{
     @Override
     public List<Employee> addEmployee(@RequestBody List<Employee> emp) {
       
+        for(Employee emplist:emp)
+        {
          
-         if(emp.getEmployee_Id()== null || emp.getEmployee_Id().isEmpty())
-         {
-            throw new RuntimeException("Employeee ID is required");
+            if(emplist.getEmployee_Id()== null || emplist.getEmployee_Id().isEmpty())
+            {
+                throw new RuntimeException("Employeee ID is required");
 
-         }
-         if(emprep.existsById(emp.getEmployee_Id()))
-         {
-            throw new RuntimeException("Employee ID already Exist enter new One");
-         }
-         return emprep.save(emp);
+            }
+            if(emprep.existsById(emplist.getEmployee_Id()))
+            {
+                throw new RuntimeException("Employee ID already Exist enter new One");
+            }
+            
+        }
+        return emprep.saveAll(emp);
     }
 
     // @Override
@@ -71,7 +75,7 @@ public class ServiceImplementation implements EmployeeApiService{
         
         if (emp.getEmployee_Id() == null || emp.getEmployee_Id().isEmpty())
             {
-                throw new IllegalArgumentException("Employee ID is required ❌");
+                throw new IllegalArgumentException("Employee ID is required ");
             }
 
                 boolean exists = emprep.existsById(emp.getEmployee_Id());
@@ -83,7 +87,7 @@ public class ServiceImplementation implements EmployeeApiService{
 
         emprep.deleteById(emp.getEmployee_Id());
 
-        return emp.getEmployee_Id() + " Employee deleted successfully ✅";
+        return emp.getEmployee_Id() + " Employee deleted successfully ";
 
 
     }
