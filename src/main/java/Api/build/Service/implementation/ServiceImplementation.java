@@ -38,12 +38,13 @@ public class ServiceImplementation implements EmployeeApiService{
     }
 
     @Override
-    public List<Employee> getAllEmployees() {
+    public List<Employee> getAllEmployees() 
+    {
         return emprep.findAll();
     }
 
     @Override
-    public String addEmployee(@RequestBody Employee emp) {
+    public List<Employee> addEmployee(@RequestBody List<Employee> emp) {
       
          
          if(emp.getEmployee_Id()== null || emp.getEmployee_Id().isEmpty())
@@ -55,9 +56,7 @@ public class ServiceImplementation implements EmployeeApiService{
          {
             throw new RuntimeException("Employee ID already Exist enter new One");
          }
-
-         emprep.save(emp);
-         return emp.getEmployee_Id()+"employee Inserted";
+         return emprep.save(emp);
     }
 
     // @Override
@@ -69,14 +68,23 @@ public class ServiceImplementation implements EmployeeApiService{
     @Override
     public String deleteById(Employee emp) 
     {
-        if(emp.getEmployee_Id()==null || emp.getEmployee_Id().isEmpty())
-        {
-            throw new RuntimeException("ID is Required");
-            
-        }
+        
+        if (emp.getEmployee_Id() == null || emp.getEmployee_Id().isEmpty())
+            {
+                throw new IllegalArgumentException("Employee ID is required ❌");
+            }
+
+                boolean exists = emprep.existsById(emp.getEmployee_Id());
+
+        if (!exists)
+            {
+                throw new RuntimeException("Employee not found with ID: " + emp.getEmployee_Id());
+            }
+
         emprep.deleteById(emp.getEmployee_Id());
 
-        return emp.getEmployee_Id()+" Emloyee deleted successfully";
+        return emp.getEmployee_Id() + " Employee deleted successfully ✅";
+
 
     }
     

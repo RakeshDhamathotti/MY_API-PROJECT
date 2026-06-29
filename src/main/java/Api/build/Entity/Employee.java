@@ -3,6 +3,8 @@
 package Api.build.Entity;
 
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -19,16 +21,15 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name="testtable")
+@Table(name="EmployeeTable")
 public class Employee {
     
 
     @Id
     private String Employee_Id;
     private String Employee_Name;
-    private String Punch_Date;
-    private String In_Punch;
-    private String Out_Punch;
+    private LocalDateTime In_Punch;
+    private LocalDateTime Out_Punch;
 
 
 }

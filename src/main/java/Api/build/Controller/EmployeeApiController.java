@@ -28,21 +28,21 @@ public class EmployeeApiController {
 
 
 
-    @GetMapping("/empall")
+    @GetMapping("/employees")
     public List<Employee> getAllEmployees()
     {
         return service.getAllEmployees();
     }
 
 
-    @GetMapping("/emp")
+    @GetMapping("/employees/id")
     public Employee getEmployee(@RequestBody Employee emp)
     {
         return service.getEmployee(emp);
     }
 
-    @PostMapping("/add")
-    public String addEmployee(@RequestBody Employee emp) {
+    @PostMapping("/Employees")
+    public List<Employee> addEmployee(@RequestBody List<Employee> emp) {
      
         return service.addEmployee(emp);
     }

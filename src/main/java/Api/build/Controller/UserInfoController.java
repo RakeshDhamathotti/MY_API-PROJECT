@@ -19,7 +19,7 @@ import Api.build.Service.implementation.UserInfoServiceImple;
 
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 public class UserInfoController {
     
 

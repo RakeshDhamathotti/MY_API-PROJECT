@@ -17,7 +17,7 @@ public interface EmployeeApiService {
 
     public Api.build.Entity.Employee getEmployee(Employee emp);
     public List<Employee> getAllEmployees();
-    public String addEmployee(Employee emp);
+    public List<Employee> addEmployee(List<Employee> emp);
     // public Employee updateEmpById(String Id);
     public String deleteById(Employee emp);
 
