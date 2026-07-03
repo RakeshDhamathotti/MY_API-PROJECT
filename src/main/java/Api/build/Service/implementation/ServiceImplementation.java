@@ -105,7 +105,7 @@ public class ServiceImplementation implements EmployeeApiService{
         }
         for (Employee allemp : empall) 
         {
-            LocalDate start= allemp.getIn_punch().toLocalDate();
+            LocalDate start= allemp.getIn_Punch().toLocalDate();
             if (!start.isAfter(enddate) && !start.isBefore(startdate)) 
             {
                 newemp.add(allemp);
@@ -128,7 +128,7 @@ public class ServiceImplementation implements EmployeeApiService{
         // }
         for (Employee allemp : empall) 
         {
-            LocalDate start= allemp.getIn_punch().toLocalDate();
+            LocalDate start= allemp.getIn_Punch().toLocalDate();
             if (!start.isAfter(enddate) && !start.isBefore(startdate)) 
             {
                 newemp.add(allemp);
@@ -152,7 +152,7 @@ public class ServiceImplementation implements EmployeeApiService{
         }
         for (Employee allemp : empall) 
         {
-            LocalDate start= allemp.getIn_punch().toLocalDate();
+            LocalDate start= allemp.getIn_Punch().toLocalDate();
             if (!start.isAfter(enddate) && !start.isBefore(startdate) && allemp.getEmployee_Id().equals(empId)) 
             {
                 newemp.add(allemp);
@@ -175,7 +175,7 @@ public class ServiceImplementation implements EmployeeApiService{
         }
         for (Employee allemp : empall) 
         {
-            LocalDate start= allemp.getIn_punch().toLocalDate();
+            LocalDate start= allemp.getIn_Punch().toLocalDate();
             if (!start.isAfter(enddate) && !start.isBefore(startdate) && allemp.getEmployee_Id().equals(empid)) 
             {
                 newemp.add(allemp);
