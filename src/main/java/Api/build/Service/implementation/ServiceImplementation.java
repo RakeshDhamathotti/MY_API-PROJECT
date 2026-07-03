@@ -1,6 +1,8 @@
 
 package Api.build.Service.implementation;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 // import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +91,99 @@ public class ServiceImplementation implements EmployeeApiService{
 
         return emp.getEmployee_Id() + " Employee deleted successfully ";
 
+
+    }
+
+    @Override
+    public List<Employee> retrievePunches(LocalDate startdate, LocalDate enddate) {
+        List<Employee> empall =emprep.findAll();
+        List<Employee> newemp = new ArrayList<>();
+
+        if(!enddate.isAfter(startdate))
+        {
+            throw new RuntimeException("the endDate should be after startDate");
+        }
+        for (Employee allemp : empall) 
+        {
+            LocalDate start= allemp.getIn_punch().toLocalDate();
+            if (!start.isAfter(enddate) && !start.isBefore(startdate)) 
+            {
+                newemp.add(allemp);
+            }
+            
+        }
+
+        return newemp;
+    }
+
+    @Override
+    public List<Employee> punchesTillDate(LocalDate startdate) {
+        LocalDate enddate=LocalDate.now();
+         List<Employee> empall =emprep.findAll();
+        List<Employee> newemp = new ArrayList<>();
+
+        // if(!enddate.isAfter(startdate))
+        // {
+        //     throw new RuntimeException("the endDate should be after startDate");
+        // }
+        for (Employee allemp : empall) 
+        {
+            LocalDate start= allemp.getIn_punch().toLocalDate();
+            if (!start.isAfter(enddate) && !start.isBefore(startdate)) 
+            {
+                newemp.add(allemp);
+            }
+            
+        }
+
+        return newemp;
+        
+    }
+
+    @Override
+    public List<Employee> employeePunchesDateRange(String empId, LocalDate startdate, LocalDate enddate) {
+        
+        List<Employee> empall =emprep.findAll();
+        List<Employee> newemp = new ArrayList<>();
+
+        if(!enddate.isAfter(startdate))
+        {
+            throw new RuntimeException("the endDate should be after startDate");
+        }
+        for (Employee allemp : empall) 
+        {
+            LocalDate start= allemp.getIn_punch().toLocalDate();
+            if (!start.isAfter(enddate) && !start.isBefore(startdate) && allemp.getEmployee_Id().equals(empId)) 
+            {
+                newemp.add(allemp);
+            }
+            
+        }
+
+        return newemp;
+    }
+
+    @Override
+    public List<Employee> employeePunchesTillDate(String empid, LocalDate startdate) {
+         List<Employee> empall =emprep.findAll();
+        List<Employee> newemp = new ArrayList<>();
+        LocalDate enddate=LocalDate.now();
+
+        if(!enddate.isAfter(startdate))
+        {
+            throw new RuntimeException("the endDate should be after startDate");
+        }
+        for (Employee allemp : empall) 
+        {
+            LocalDate start= allemp.getIn_punch().toLocalDate();
+            if (!start.isAfter(enddate) && !start.isBefore(startdate) && allemp.getEmployee_Id().equals(empid)) 
+            {
+                newemp.add(allemp);
+            }
+            
+        }
+
+        return newemp;
 
     }
     

@@ -1,7 +1,9 @@
 
 package Api.build.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +54,64 @@ public class EmployeeApiController {
     {
         return service.deleteById(emp);
 
+    }
+
+     @PostMapping("/punches/date-range")
+    public ResponseEntity< ?> retrievepunches(@RequestBody Map<String,String> request )
+    {
+
+       
+        String startDateStr = request.get("startDate");
+        String endDateStr = request.get("endDate");
+
+        if (startDateStr == null || endDateStr == null) {
+            return ResponseEntity.badRequest()
+                .body("startDate and endDate are required");
+        }
+
+        LocalDate startDate = LocalDate.parse(startDateStr);
+        LocalDate endDate = LocalDate.parse(endDateStr);
+
+        return ResponseEntity.ok(
+                service.retrievePunches(startDate, endDate)
+        );
+
+
+    }
+
+
+    @PostMapping("/punches/till-date")
+    public ResponseEntity<?>punchesTillDate(@RequestBody Map<String, String>request)
+    {
+
+        LocalDate enddate=LocalDate.parse( request.get("startDate"));
+        return ResponseEntity.ok(
+            service.punchesTillDate(enddate)
+        );
+    }
+
+
+    @PostMapping("/employees/punches/date-range")
+    public ResponseEntity<?> employeePunchesDateRange(@RequestBody Map<String, String>request)
+    {
+        String employeeId=request.get("Employee_Id");
+        LocalDate startdate=LocalDate.parse(request.get("startdate"));
+        LocalDate enddate=LocalDate.parse(request.get("enddate"));
+
+        return ResponseEntity.ok(
+            service.employeePunchesDateRange(employeeId,startdate,enddate)
+        );
+    }
+
+    @PostMapping("/employees/punches/till-date")
+    public ResponseEntity<?> employeePunchesTillDate(@RequestBody Map<String,String>request)
+    {
+        String Employee_Id=request.get("Employee_Id");
+        LocalDate startDate=LocalDate.parse(request.get("startDate"));
+
+        return ResponseEntity.ok(
+            service.employeePunchesTillDate(Employee_Id, startDate)
+        );
     }
     
 }
