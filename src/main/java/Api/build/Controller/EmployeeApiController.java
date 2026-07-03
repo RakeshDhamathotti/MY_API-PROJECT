@@ -85,9 +85,9 @@ public class EmployeeApiController {
     public ResponseEntity<?>punchesTillDate(@RequestBody Map<String, String>request)
     {
 
-        LocalDate enddate=LocalDate.parse( request.get("startDate"));
+        LocalDate startdate=LocalDate.parse( request.get("startDate"));
         return ResponseEntity.ok(
-            service.punchesTillDate(enddate)
+            service.punchesTillDate(startdate)
         );
     }
 

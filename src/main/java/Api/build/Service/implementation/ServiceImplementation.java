@@ -122,10 +122,10 @@ public class ServiceImplementation implements EmployeeApiService{
          List<Employee> empall =emprep.findAll();
         List<Employee> newemp = new ArrayList<>();
 
-        // if(!enddate.isAfter(startdate))
-        // {
-        //     throw new RuntimeException("the endDate should be after startDate");
-        // }
+        if(!enddate.isAfter(startdate))
+        {
+            throw new RuntimeException("The Start Date cannot be in Future");
+        }
         for (Employee allemp : empall) 
         {
             LocalDate start= allemp.getIn_Punch().toLocalDate();
@@ -171,7 +171,7 @@ public class ServiceImplementation implements EmployeeApiService{
 
         if(!enddate.isAfter(startdate))
         {
-            throw new RuntimeException("the endDate should be after startDate");
+            throw new RuntimeException("the Start Date cannot be in Future");
         }
         for (Employee allemp : empall) 
         {
