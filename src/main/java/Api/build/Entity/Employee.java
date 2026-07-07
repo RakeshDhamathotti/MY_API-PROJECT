@@ -1,12 +1,16 @@
-
-
 package Api.build.Entity;
 
 
-import java.time.LocalDateTime;
 
+import java.util.List;
+
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,16 +25,23 @@ import lombok.ToString;
 @ToString
 
 @Entity
-@Table(name="EmployeeTable")
+@Table(name="EmployeeDetails")
 public class Employee {
     
 
     @Id
-    private String Employee_Id;
-    private String Employee_Name;
-    private LocalDateTime In_Punch;
-    private LocalDateTime Out_Punch;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
+    private String employeeId;
+    private String employeeName;
+
+    @ElementCollection
+    @CollectionTable
+    (
+        name ="employeePunches",
+        joinColumns =@JoinColumn(name="employeeId")
+    )
+    private List<Punches> punches;
 
 
 }
-// >>>>>>> 606cd7d39036706b88a9651523fd3ec9a3d8ac67

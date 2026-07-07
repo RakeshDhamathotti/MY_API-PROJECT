@@ -72,7 +72,7 @@ public class UserInfoServiceImple implements UserInfoService {
 
             throw new InvalidCredentialException(
                  "Invalid Credentials : " + e.getMessage()
-             );
+                );
         }
 
         return "Authentication Failed";
