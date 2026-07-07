@@ -44,7 +44,7 @@ public class EmployeeApiController {
         return service.getEmployee(emp);
     }
 
-    @PostMapping("/Employees")
+    @PostMapping("/employees")
     public List<Employee> addEmployee(@RequestBody List<Employee> emp) {
      
         return service.addEmployee(emp);
