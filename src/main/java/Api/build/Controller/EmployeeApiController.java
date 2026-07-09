@@ -95,9 +95,9 @@ public class EmployeeApiController {
     @PostMapping("/employees/punches/date-range")
     public ResponseEntity<?> employeePunchesDateRange(@RequestBody Map<String, String>request)
     {
-        String employeeId=request.get("Employee_Id");
-        LocalDate startdate=LocalDate.parse(request.get("startdate"));
-        LocalDate enddate=LocalDate.parse(request.get("enddate"));
+        String employeeId=request.get("employeeId");
+        LocalDate startDate=LocalDate.parse(request.get("startDate"));
+        LocalDate endDate=LocalDate.parse(request.get("endDate"));
 
         return ResponseEntity.ok(
             service.employeePunchesDateRange(employeeId,startdate,enddate)
@@ -107,11 +107,11 @@ public class EmployeeApiController {
     @PostMapping("/employees/punches/till-date")
     public ResponseEntity<?> employeePunchesTillDate(@RequestBody Map<String,String>request)
     {
-        String Employee_Id=request.get("Employee_Id");
+        String employeeId=request.get("employeeId");
         LocalDate startDate=LocalDate.parse(request.get("startDate"));
 
         return ResponseEntity.ok(
-            service.employeePunchesTillDate(Employee_Id, startDate)
+            service.employeePunchesTillDate(employeeId, startDate)
         );
     }
     
