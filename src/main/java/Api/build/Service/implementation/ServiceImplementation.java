@@ -93,10 +93,10 @@ public class ServiceImplementation implements EmployeeApiService{
                                 " already has a punch for date " + newPunchDate);
                     }
                     Employee.getPunches()
-                            .addAll(employeeIn.getPunches());
-
-                    employeesToSave.add(Employee);
-                } 
+                            .add(newPunch);
+                }
+                employeesToSave.add(Employee);
+                
             }
             else 
             {
