@@ -100,7 +100,7 @@ public class EmployeeApiController {
         LocalDate endDate=LocalDate.parse(request.get("endDate"));
 
         return ResponseEntity.ok(
-            service.employeePunchesDateRange(employeeId,startdate,enddate)
+            service.employeePunchesDateRange(employeeId,startDate,endDate)
         );
     }
 
