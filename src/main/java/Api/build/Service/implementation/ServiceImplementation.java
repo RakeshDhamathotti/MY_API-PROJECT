@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.transaction.annotation.Transactional;
 
 import Api.build.Entity.Employee;
 import Api.build.Entity.Punches;
@@ -18,6 +19,7 @@ import Api.build.Service.EmployeeApiService;
 
 
 @Service
+@Transactional
 public class ServiceImplementation implements EmployeeApiService{
 
 

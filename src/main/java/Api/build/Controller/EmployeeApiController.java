@@ -50,7 +50,7 @@ public class EmployeeApiController {
         return service.addEmployee(emp);
     }
 
-    @PostMapping("/delete")
+    @PostMapping("/employees/delete")
     public String deleteById(@RequestBody Employee emp)
     {
         return service.deleteById(emp);
